@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Insights into functions &#8212; Mismatches between Community Properties</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ecosystem-functions';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Insights into perturbations" href="perturbations.html" />
+    <link rel="prev" title="2. Validation tests" href="validation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Mismatches between Community Properties - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Mismatches between Community Properties - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Tutorial introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data-preparation.html">1. Data preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">2. Validation tests</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Insights into functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perturbations.html">4. Insights into perturbations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jamesaorr/community-properties" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jamesaorr/community-properties/issues/new?title=Issue%20on%20page%20%2Fecosystem-functions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ecosystem-functions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Insights into functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-of-functions">3.1. Similarity of functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadness-of-functions">3.2. Broadness of functions</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="insights-into-functions">
+<h1><span class="section-number">3. </span>Insights into functions<a class="headerlink" href="#insights-into-functions" title="Permalink to this heading">#</a></h1>
+<p>Now that we are confident that the <em>proportion of mismatches</em> between two community metrics actually reflects their <em>collinearity</em> in our grasslands dataset, we can use our theory to gain new insights from the data.</p>
+<p>The goal of this chapter of the tutorial is to understand species contributions to community properties in a natural context. As species contributions to diversity metrics are well understood (diversity metrics are well-defined mathematical functions of species-abundance distributions), we’ll focus on ecosystem functions.</p>
+<p>Let’s start by setting up our environment and loading the data created in the first chapter of this tutorial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>                  <span class="c1"># general data organisation         </span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                   <span class="c1"># general work with matrices and vectors </span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>      <span class="c1"># general plotting work</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>                <span class="c1"># for plotting a network</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>  <span class="c1"># for color gradients</span>
+
+<span class="c1"># for text formating in figures</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="s2">&quot;text.usetex&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;font.family&quot;</span><span class="p">:</span> <span class="s2">&quot;sans-serif&quot;</span><span class="p">,</span>  
+<span class="p">})</span>
+
+<span class="c1"># loading the data and saving a colour</span>
+<span class="n">grasslands</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/grasslands.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;Observation&quot;</span><span class="p">)</span>
+<span class="n">mismatch_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/mismatch_matrix.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">)</span>
+<span class="n">grass_col</span> <span class="o">=</span> <span class="s1">&#39;#b89247&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="similarity-of-functions">
+<h2><span class="section-number">3.1. </span>Similarity of functions<a class="headerlink" href="#similarity-of-functions" title="Permalink to this heading">#</a></h2>
+<p>The first thing we can do is to use the mismatch matrices generated in <em><a class="reference internal" href="data-preparation.html"><span class="doc std std-doc">Data preparation</span></a></em> as an adjacency matrix for a network that maps out the ecosystem functions based on their similarities.</p>
+<p>If we use a force-directed layout algorithm that pushes nodes away from each other based on the weight of their edges, then ecosystem functions with high proportions of mismatches (and therefore low collinearity) should be far apart in the 2D network. We’ll use the Kamada-Kawai path-length cost-function to determine the layout of our network (<a class="reference external" href="https://doi.org/10.1016/0020-0190(89)90102-6">Tomihisa Kamada and Satoru Kawai, 1989</a>). This force-directed algorithm treats the network as a system of springs and distance in the network should correspond to the proportion of mismatches.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert pandas object to numpy array (making sure all entries are numeric)</span>
+<span class="n">mismatch_matrix</span> <span class="o">=</span> <span class="n">mismatch_matrix</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+<span class="n">adjacency_matrix</span> <span class="o">=</span> <span class="n">mismatch_matrix</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># convert to a network object</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_numpy_array</span><span class="p">(</span><span class="n">adjacency_matrix</span><span class="p">)</span>
+
+<span class="c1"># set node names</span>
+<span class="n">node_names</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">mismatch_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">relabel_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node_names</span><span class="p">)</span>
+
+<span class="c1"># shorten node labels for respiration and biomass </span>
+<span class="n">old_node_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+<span class="n">new_node_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Respiration&#39;</span><span class="p">:</span> <span class="s1">&#39;RES&#39;</span><span class="p">,</span> <span class="s1">&#39;MicrobialBiomass&#39;</span><span class="p">:</span> <span class="s1">&#39;BIO&#39;</span><span class="p">}</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">relabel_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">new_node_names</span><span class="p">)</span>
+
+<span class="c1"># set layout</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">kamada_kawai_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># set edge weights</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+
+<span class="c1"># Map weights to colors in the colormap</span>
+<span class="n">blue</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">red</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">white</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">mcolors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;custom_colormap&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">blue</span><span class="p">,</span> <span class="n">white</span><span class="p">,</span> <span class="n">red</span><span class="p">],</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+<span class="n">edge_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">cmap</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span> <span class="k">for</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">weights</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+
+<span class="c1"># draw the network</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+        <span class="n">node_color</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]],</span> 
+        <span class="n">edge_color</span><span class="o">=</span> <span class="n">edge_colors</span><span class="p">,</span>
+        <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+        <span class="n">font_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aeaf09619c0c8d951e50359a42b4b20501ce3834012f912ce0a4ddcc6f7c43d2.png" src="_images/aeaf09619c0c8d951e50359a42b4b20501ce3834012f912ce0a4ddcc6f7c43d2.png" />
+</div>
+</div>
+<p>As a reminder, the nine ecosystem functions from the mismatch matrix are: microbial respiration (<em>“RES”</em>) and microbial biomass (<em>“BIO”</em>), phenol oxidase (<em>“PO”</em>), α-1,4-glucosidase (<em>“AG”</em>), β-1,4-glucosidase (<em>“BG”</em>), cellobiohydrolase (<em>“CEL”</em>), β-1,4-xylosidase (<em>“XYL”</em>), N-acetyl-β-glucosaminidase (<em>“NAG”</em>), and phosphatase (<em>“AP”</em>).</p>
+<p>One of the first things to notice is that microbial respiration and microbial biomass, the only two “broad” ecosystem functions in this subset of the data, are right beside each other in the network. Even more reassuring is that the seven “narrow” ecosystem functions are grouped based on the nutrient cycles they are involved in. Nitrogen and phosphorus cycling enzymes (NAG and AP) are separated from the carbon cycling enzymes. Furthermore, the four hydrolytic carbon cycling enzymes (XYL, CEL, AG, and BG) are separated from the oxidative carbon cycling enzyme (PO).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the network produced patterns of functional similarity that were unexpected based on knowledge gained in controlled lab studies, it could mean that the natural context (e.g., species interactions or environmentally-dependent per capita contributions) is playing a strong role in determining how species composition links to ecosystem functioning.</p>
+</div>
+</section>
+<section id="broadness-of-functions">
+<h2><span class="section-number">3.2. </span>Broadness of functions<a class="headerlink" href="#broadness-of-functions" title="Permalink to this heading">#</a></h2>
+<p>We know that total biomass is the “broadest” ecosystem function; it’s vector of species per-capita contributions is, by definition, made up entirely of ones. We can therefore use total biomass as a baseline to quantify the broadness of other functions. The angle between biomass and other broad functions will be small so, over many perturbations with random effects, the proportion of mismatches will therefore be low. Narrower functions will have larger angles with biomass, which will result in higher proportions of mismatches.</p>
+<p>Working in reverse, we can use the proportion of mismatches between some function and total biomass (directly available from the data) to estimate the broadness of that function. For a fair estimate of broadness, the proportion of mismatches between the function and biomass should be quantified over a large pool of perturbations that collectively have random effects. Here, we do not consider perturbations of nutrients for ecosystem functions related to that nutrient – these perturbations have systematic effects rather than random effects – and we only consider cases where the proportion of mismatches between a function and biomass is based on at least twenty perturbations including at least five types of global change factors.</p>
+<p>First, let’s recall the <code class="docutils literal notranslate"><span class="pre">mismatches</span></code> function from the first chapter of the tutorial and let’s create another function called <code class="docutils literal notranslate"><span class="pre">broadness_func</span></code> that estimates the broadness of an ecosystem function based on its proportion of mismatches with total biomass.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##### function to estimate the proportion of mismatches between two community properties #####</span>
+<span class="k">def</span> <span class="nf">mismatches</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">min_obs</span><span class="p">):</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">X</span> <span class="o">==</span> <span class="n">Y</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">min_obs</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="n">X</span><span class="p">])</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="n">Y</span><span class="p">]))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
+
+<span class="c1">##### function to estimate broadness of a function #####</span>
+<span class="k">def</span> <span class="nf">broadness_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+    
+    <span class="c1"># subset just the pair of functions</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;MicrobialBiomass&quot;</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="s2">&quot;GC&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+    <span class="c1"># option to exclude perturbations that are directly related to an ecosystem function (that have systematic effects)</span>
+    <span class="n">excluded</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">func</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Nmin&quot;</span><span class="p">,</span> <span class="s2">&quot;Nitrification&quot;</span><span class="p">,</span> <span class="s2">&quot;Denitrification&quot;</span><span class="p">,</span> <span class="s2">&quot;Nfixation&quot;</span><span class="p">,</span> <span class="s2">&quot;Urease&quot;</span><span class="p">,</span> <span class="s2">&quot;NAG&quot;</span><span class="p">,</span> <span class="s2">&quot;LAP&quot;</span><span class="p">]:</span>
+        <span class="n">excluded</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="s2">&quot;N_P&quot;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">func</span> <span class="o">==</span> <span class="s2">&quot;AP&quot;</span><span class="p">:</span>
+        <span class="n">excluded</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="s2">&quot;N_P&quot;</span><span class="p">]</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="n">sub</span><span class="p">[</span><span class="o">~</span><span class="n">sub</span><span class="p">[</span><span class="s2">&quot;GC&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">excluded</span><span class="p">)]</span>
+    
+    <span class="c1"># calculate mismatches</span>
+    <span class="n">mismatch</span> <span class="o">=</span> <span class="n">mismatches</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="s2">&quot;MicrobialBiomass&quot;</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    
+    <span class="c1"># count number of perturbations</span>
+    <span class="n">NP</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
+    
+    <span class="c1"># count number of perturbation types </span>
+    <span class="n">NPtype</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s2">&quot;GC&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    
+    <span class="n">new_values</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s2">&quot;func&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">func</span><span class="p">],</span>
+        <span class="s2">&quot;NP&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">NP</span><span class="p">],</span>
+        <span class="s2">&quot;NPtype&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">NPtype</span><span class="p">],</span>
+        <span class="s2">&quot;mismatch&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">mismatch</span><span class="p">]</span>
+    <span class="p">})</span>
+    
+    <span class="k">return</span> <span class="n">new_values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we’ll loop over all the functions (except total biomass) to estimate their broadness. We’ll only make estimates for the broadness of a function if the proportion of mismatches between that function and total biomass is based on many perturbations of different types (so that perturbations collectively have unbiased/random effects).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List of all functions (except MicrobialBiomass)</span>
+<span class="n">full_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;PO&quot;</span><span class="p">,</span> <span class="s2">&quot;PER&quot;</span><span class="p">,</span> <span class="s2">&quot;AG&quot;</span><span class="p">,</span> <span class="s2">&quot;BG&quot;</span><span class="p">,</span> <span class="s2">&quot;CEL&quot;</span><span class="p">,</span> <span class="s2">&quot;XYL&quot;</span><span class="p">,</span> <span class="s2">&quot;Invertase&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NAG&quot;</span><span class="p">,</span> <span class="s2">&quot;LAP&quot;</span><span class="p">,</span> <span class="s2">&quot;Urease&quot;</span><span class="p">,</span> <span class="s2">&quot;AP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Respiration&quot;</span><span class="p">,</span> <span class="s2">&quot;Nmin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Nitrification&quot;</span><span class="p">,</span> <span class="s2">&quot;Denitrification&quot;</span><span class="p">,</span> <span class="s2">&quot;Nfixation&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># empty dataframe to fill in </span>
+<span class="n">broadness</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="c1"># loop over forests and grasslands and across all functions to calculate broadness</span>
+<span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">full_list</span><span class="p">:</span>        
+    <span class="n">new_values</span> <span class="o">=</span> <span class="n">broadness_func</span><span class="p">(</span><span class="n">grasslands</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+    <span class="n">broadness</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">broadness</span><span class="p">,</span> <span class="n">new_values</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># only take measures of broadness that are based on many perturbations of a range of types</span>
+<span class="n">broadness_data</span> <span class="o">=</span> <span class="n">broadness</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">broadness</span><span class="p">[</span><span class="s2">&quot;NP&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">broadness</span><span class="p">[</span><span class="s2">&quot;NPtype&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">broadness_data</span><span class="p">[</span><span class="s2">&quot;broadness&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">broadness_data</span><span class="p">[</span><span class="s2">&quot;mismatch&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">broadness_data</span><span class="p">[</span><span class="s2">&quot;NP&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">broadness_data</span><span class="p">[</span><span class="s2">&quot;NP&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now plot the estimated broadness of ecosystem functions.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># sort the order from highest to lowest broadness </span>
+<span class="n">order</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Respiration&quot;</span><span class="p">,</span> <span class="s2">&quot;Nmin&quot;</span><span class="p">,</span> <span class="s2">&quot;PO&quot;</span><span class="p">,</span> <span class="s2">&quot;BG&quot;</span><span class="p">,</span> <span class="s2">&quot;AP&quot;</span><span class="p">]</span>
+<span class="n">grass_broad</span> <span class="o">=</span> <span class="n">broadness_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">grass_broad</span><span class="p">[</span><span class="s1">&#39;func&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">grass_broad</span><span class="p">[</span><span class="s1">&#39;func&#39;</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">grass_broad</span> <span class="o">=</span> <span class="n">grass_broad</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;func&#39;</span><span class="p">)</span>
+<span class="n">grass_broad</span> <span class="o">=</span> <span class="n">grass_broad</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">grass_broad</span><span class="p">[</span><span class="s1">&#39;func&#39;</span><span class="p">],</span> <span class="n">grass_broad</span><span class="p">[</span><span class="s1">&#39;broadness&#39;</span><span class="p">],</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">grass_broad</span><span class="p">[</span><span class="s1">&#39;NP&#39;</span><span class="p">]</span><span class="o">**</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">grass_col</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Ecosystem Function&#39;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Estimated Broadness&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/52e83b0e9a85423ed69f5195849201a26e81e5e9c3f4cb84d556da592cb1a079.png" src="_images/52e83b0e9a85423ed69f5195849201a26e81e5e9c3f4cb84d556da592cb1a079.png" />
+</div>
+</div>
+<p>There were enough data to estimate the broadness of five ecosystem functions: microbial respiration, net N mineralization rate, phenol oxidase (<em>“PO”</em>), β-1,4-xylosidase (<em>“XYL”</em>), and phosphatase (<em>“AP”</em>).</p>
+<p>As expected, microbial respiration was estimated to be the most broad of these five functions. The next function in terms of broadness was net N mineralization rate, which is presumably influenced by many different enzymes. Finally, three specific enzymes were estimated to be the narrowest of the five functions. These results suggest that more species contribute to the production of phenol oxidase (involved in the carbon cycle) than to the production of phosphatase (involved in the phosphorus cycle) in these grassland ecosystems.</p>
+<p>So far we’ve treated perturbations as tools to gain insights into species contributions to ecosystem functions. However, we can also use the mismatches between community properties in the observations of perturbations to gain useful information about the perturbations themselves.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="validation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Validation tests</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="perturbations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Insights into perturbations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-of-functions">3.1. Similarity of functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadness-of-functions">3.2. Broadness of functions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James A. Orr
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
