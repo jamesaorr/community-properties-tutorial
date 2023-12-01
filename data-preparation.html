@@ -381,8 +381,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
 <h1><span class="section-number">1. </span>Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h1>
-<p>Data that describe the responses of multiple community properties to given perturbatations is what we require for our approach based on a geometric view of community properties. These properties could be measures of diversity like richness or diversity indices (e.g., Shannon Diversisty Index) or they could be measures of ecosystem functioning like total biomass or the producition of a specific enzyme.</p>
-<p>Many perturbation experiments (e.g., that test the effects of species invasions, climate change, or other anthropgenic stressors) often report responses in both diversity and ecosystem function. Meta-analyses of these perturbation experiments can be excellent sources of relevant data. Indeed, for this tutorial we’ll use a subset of the dataset produced by Zhenghu Zhou, Chuankuan Wang, and Yiqi Luo from their <a class="reference external" href="https://doi.org/10.1038/s41467-020-16881-7">systematic review</a> published in 2020 on global change experiments in microbial soil communities. Specifically, we’ll just look at the perturbation experiments that were conducted in grassland ecosystems.</p>
+<p>For our approach based on a geometric view of community properties we require data that describe the responses of multiple community properties to given perturbatations. These properties could be measures of diversity like richness or diversity indices (e.g., Shannon Diversisty Index) or they could be measures of ecosystem functioning like total biomass or the producition of a specific enzyme.</p>
+<p>Many perturbation experiments (e.g., that test the ecological impacts of species invasions, climate change, or other anthropgenic stressors) often report responses in both diversity and ecosystem function. Meta-analyses of these perturbation experiments can be excellent sources of relevant data. Indeed, for this tutorial we’ll use a subset of the dataset produced by Zhenghu Zhou, Chuankuan Wang, and Yiqi Luo from their <a class="reference external" href="https://doi.org/10.1038/s41467-020-16881-7">systematic review</a> published in 2020 on global change experiments in microbial soil communities. Specifically, we’ll just look at the perturbation experiments that were conducted in grassland ecosystems.</p>
 <figure class="align-default" id="markdown-fig">
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/grasslands.png"><img alt="grasslands" class="bg-primary mb-1" src="_images/grasslands.png" style="width: 100%;" /></a>
 <figcaption>
@@ -466,7 +466,7 @@ document.write(`
 }
 </style>
 <div class="itables">
-<table id="60113f4a-5253-4b94-b10e-b28cbf7c605f" class="display nowrap"style="table-layout:auto;width:auto;margin:auto;caption-side:bottom"><thead>
+<table id="77dbbc2c-f97d-4333-8ae5-a7f98ccdc458" class="display nowrap"style="table-layout:auto;width:auto;margin:auto;caption-side:bottom"><thead>
     <tr style="text-align: right;">
       <th></th>
       <th>Region</th>
@@ -650,7 +650,7 @@ document.write(`
                 dt_args["data"] = data;
 
                 
-                $('#60113f4a-5253-4b94-b10e-b28cbf7c605f').DataTable(dt_args);
+                $('#77dbbc2c-f97d-4333-8ae5-a7f98ccdc458').DataTable(dt_args);
             });
         })
     }
@@ -704,7 +704,7 @@ document.write(`
 }
 </style>
 <div class="itables">
-<table id="fe7490a4-8d1e-467e-a530-4b39fcc66041" class="display nowrap"style="table-layout:auto;width:auto;margin:auto;caption-side:bottom"><thead>
+<table id="9db168ee-46ca-4e63-8d44-55aa79d98328" class="display nowrap"style="table-layout:auto;width:auto;margin:auto;caption-side:bottom"><thead>
     <tr style="text-align: right;">
       <th></th>
       <th>count</th>
@@ -724,7 +724,7 @@ document.write(`
                 dt_args["data"] = data;
 
                 
-                $('#fe7490a4-8d1e-467e-a530-4b39fcc66041').DataTable(dt_args);
+                $('#9db168ee-46ca-4e63-8d44-55aa79d98328').DataTable(dt_args);
             });
         })
     }
@@ -732,7 +732,7 @@ document.write(`
 </div>
 </div></div>
 </div>
-<p>Where <strong>W</strong> is warming, <strong>eCO2</strong> is carbon dioxide enrichment, <strong>PPT−</strong> is decreased precipitation, <strong>PPT+</strong> is increased precipitation, <strong>P</strong> is phosphorous addition, <strong>N</strong> is nitrogen addition, <strong>K</strong> is potassium addition, and <strong>LUC</strong> is land-use change. Underscores between multiple perturbation types represent combined perturbation treatments. Land-use change can be further categorised as conversion from native ecosystem to either agricultural land, pasture, plantation or secondary ecosystem:</p>
+<p>Where <strong>LUC</strong> is land-use change, <strong>N</strong> is nitrogen addition, <strong>P</strong> is phosphorous addition, <strong>PPT+</strong> is increased precipitation, <strong>K</strong> is potassium addition, <strong>PPT+</strong> is increased precipitation, and <strong>eCO2</strong> is carbon dioxide enrichment. Underscores between multiple perturbation types represent combined perturbation treatments. Land-use change can be further categorised as conversion from native ecosystem to either agricultural land, pasture, plantation or secondary ecosystem:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -775,7 +775,7 @@ document.write(`
 }
 </style>
 <div class="itables">
-<table id="4a0ee130-2ff8-41f6-aac2-1723751ee13e" class="display nowrap"style="table-layout:auto;width:auto;margin:auto;caption-side:bottom"><thead>
+<table id="45ea911e-e4d8-42b8-a3fa-4be431d663df" class="display nowrap"style="table-layout:auto;width:auto;margin:auto;caption-side:bottom"><thead>
     <tr style="text-align: right;">
       <th></th>
       <th>count</th>
@@ -795,7 +795,7 @@ document.write(`
                 dt_args["data"] = data;
 
                 
-                $('#4a0ee130-2ff8-41f6-aac2-1723751ee13e').DataTable(dt_args);
+                $('#45ea911e-e4d8-42b8-a3fa-4be431d663df').DataTable(dt_args);
             });
         })
     }
@@ -939,7 +939,7 @@ document.write(`
 }
 </style>
 <div class="itables">
-<table id="a902606c-9a91-48f1-b6af-ab3e523f21e2" class="display nowrap"style="table-layout:auto;width:auto;margin:auto;caption-side:bottom"><thead>
+<table id="a31dacd2-5d4e-4e48-a5c4-bbca2c7d9df3" class="display nowrap"style="table-layout:auto;width:auto;margin:auto;caption-side:bottom"><thead>
     <tr style="text-align: right;">
       <th></th>
       <th>PO</th>
@@ -975,7 +975,7 @@ document.write(`
                 dt_args["data"] = data;
 
                 
-                $('#a902606c-9a91-48f1-b6af-ab3e523f21e2').DataTable(dt_args);
+                $('#a31dacd2-5d4e-4e48-a5c4-bbca2c7d9df3').DataTable(dt_args);
             });
         })
     }
@@ -1036,7 +1036,7 @@ document.write(`
 }
 </style>
 <div class="itables">
-<table id="909d7f12-7083-4f46-b2cb-cf4565793591" class="display nowrap"style="table-layout:auto;width:auto;margin:auto;caption-side:bottom"><thead>
+<table id="cc67cf23-499f-4a18-86b2-d2e10afdea3f" class="display nowrap"style="table-layout:auto;width:auto;margin:auto;caption-side:bottom"><thead>
     <tr style="text-align: right;">
       <th></th>
       <th>PO</th>
@@ -1064,7 +1064,7 @@ document.write(`
                 dt_args["data"] = data;
 
                 
-                $('#909d7f12-7083-4f46-b2cb-cf4565793591').DataTable(dt_args);
+                $('#cc67cf23-499f-4a18-86b2-d2e10afdea3f').DataTable(dt_args);
             });
         })
     }
