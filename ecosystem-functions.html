@@ -62,11 +62,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ecosystem-functions';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="4. Insights into perturbations" href="perturbations.html" />
-    <link rel="prev" title="2. Validation tests" href="validation.html" />
+    <link rel="prev" title="2. Validation test" href="validation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="data-preparation.html">1. Data preparation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="validation.html">2. Validation tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">2. Validation test</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Insights into functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="perturbations.html">4. Insights into perturbations</a></li>
 </ul>
@@ -390,6 +392,8 @@ document.write(`
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>      <span class="c1"># general plotting work</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>                <span class="c1"># for plotting a network</span>
 <span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>  <span class="c1"># for color gradients</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">inv</span>   <span class="c1"># matrix tools</span>
+
 
 <span class="c1"># for text formating in figures</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
@@ -465,8 +469,14 @@ document.write(`
 </section>
 <section id="broadness-of-functions">
 <h2><span class="section-number">3.2. </span>Broadness of functions<a class="headerlink" href="#broadness-of-functions" title="Permalink to this heading">#</a></h2>
-<p>We know that total biomass is the “broadest” ecosystem function; it’s vector of species per-capita contributions is, by definition, made up entirely of ones. We can therefore use total biomass as a baseline to quantify the broadness of other functions. The angle between biomass and other broad functions will be small so, over many perturbations with random effects, the proportion of mismatches will therefore be low. Narrower functions will have larger angles with biomass, which will result in higher proportions of mismatches.</p>
-<p>Working in reverse, we can use the proportion of mismatches between some function and total biomass (directly available from the data) to estimate the broadness of that function. For a fair estimate of broadness, the proportion of mismatches between the function and biomass should be quantified over a large pool of perturbations that collectively have random effects. Here, we do not consider perturbations of nutrients for ecosystem functions related to that nutrient – these perturbations have systematic effects rather than random effects – and we only consider cases where the proportion of mismatches between a function and biomass is based on at least twenty perturbations including at least five types of global change factors.</p>
+<p>We define the broadness of functions as the Simpson diversity index of the species per-capita functional contributions (normalized by S):</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{B}_f=\frac{{ }^2 D}{S}=\frac{\left(\sum_i\left(\frac{\left|\phi_i\right|}{\sum_j\left|\phi_j\right|}\right)^2\right)^{-1}}{S}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(S\)</span> is species richness and <span class="math notranslate nohighlight">\(\phi\)</span> is the vector of per-capita contributions. We also known that total biomass is the “broadest” ecosystem function; it’s vector of species per-capita contributions is, by definition, made up entirely of ones. We can therefore use total biomass as a baseline to quantify the broadness of other functions. The angle between biomass and other broad functions will be small so, over many perturbations with random effects, the proportion of mismatches will therefore be low. Narrower functions will have larger angles with biomass, which will result in higher proportions of mismatches.</p>
+<p>Using this information we showed in our simulations that we can predict the broadness of functions based on their mimsathces with biomass:</p>
+<p>Let’s apply this logic to the grasslands dataset to estimate the broadness of the ecosystem functions. For a fair estimate of broadness, the proportion of mismatches between the function and biomass should be quantified over a large pool of perturbations that collectively have random effects. Here, we do not consider perturbations of nutrients for ecosystem functions related to that nutrient – these perturbations have systematic effects rather than random effects – and we only consider cases where the proportion of mismatches between a function and biomass is based on at least twenty perturbations including at least five types of global change factors.</p>
 <p>First, let’s recall the <code class="docutils literal notranslate"><span class="pre">mismatches</span></code> function from the first chapter of the tutorial and let’s create another function called <code class="docutils literal notranslate"><span class="pre">broadness_func</span></code> that estimates the broadness of an ecosystem function based on its proportion of mismatches with total biomass.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -578,6 +588,79 @@ document.write(`
 </div>
 <p>There were enough data to estimate the broadness of five ecosystem functions: microbial respiration, net N mineralization rate, phenol oxidase (<em>“PO”</em>), β-1,4-xylosidase (<em>“XYL”</em>), and phosphatase (<em>“AP”</em>).</p>
 <p>As expected, microbial respiration was estimated to be the most broad of these five functions. The next function in terms of broadness was net N mineralization rate, which is presumably influenced by many different enzymes. Finally, three specific enzymes were estimated to be the narrowest of the five functions. These results suggest that more species contribute to the production of phenol oxidase (involved in the carbon cycle) than to the production of phosphatase (involved in the phosphorus cycle) in these grassland ecosystems.</p>
+<p><strong>One step further!</strong></p>
+<p>We can also use these estimates of the broadness of functions to predict their collinearity.</p>
+<p>Let’s break that down into two steps:</p>
+<ol class="arabic simple">
+<li><p><em>Estimate broadness of functions based on their proportion of mismatches with total biomass.</em> As we know that total biomass is by definition the most broad function (species per-capita contributions are all 1), the general idea is that other broad functions should have low proportions of mimatches with total biomass while narrow functions should have high proportions of mismatches with total biomass.</p></li>
+<li><p><em>Use these estimates of broadness to predict collinearity</em>. Again, two broad functions should have low proportion of mismatches, but two narrow functions would typically have high proportions of mismatches.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cos_data, actual collinearity of functions based their proportion of mismatches</span>
+<span class="n">Pij</span><span class="o">=</span><span class="n">mismatch_matrix</span><span class="o">.</span><span class="n">values</span><span class="p">[:,:]</span>                  
+<span class="n">K</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">Pij</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>
+<span class="n">Cos_data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">K</span><span class="p">,</span><span class="n">K</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+        <span class="n">Cos_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">Pij</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>     
+
+<span class="c1"># Run the code from the validation test - matrices with high norms won&#39;t work for this approach</span>
+<span class="n">Norm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">K</span><span class="p">,</span><span class="n">K</span><span class="p">])</span> 
+<span class="n">Cos_hat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">K</span><span class="p">,</span><span class="n">K</span><span class="p">])</span>  
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+        <span class="n">Cij</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">Cos_data</span><span class="p">,[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="mi">0</span><span class="p">),[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">R</span><span class="o">=</span><span class="n">inv</span><span class="p">(</span><span class="n">Cij</span><span class="p">)</span>
+        <span class="n">Norm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">norm</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+<span class="n">normM</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">Norm</span><span class="p">)</span>      <span class="c1"># sensitivity</span>
+
+<span class="c1"># Predicted collinearity based on estimated broadness (which is based on mismatches with biomass)</span>
+<span class="n">Prod</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Prod</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">Cos_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">Cos_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>      <span class="c1">### -1 refers to the last row and column which is biomass </span>
+
+<span class="c1"># delete these points as they will by definition fall on the 1:1 line</span>
+<span class="n">Cos_bio</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">Cos_data</span><span class="p">,</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+
+<span class="c1"># norm (again, too high and this won&#39;t make sense)</span>
+<span class="n">normM_red</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">Norm</span><span class="p">,</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">roof</span><span class="o">=</span><span class="mi">15</span> <span class="c1"># upper bound on sensitivity</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the prediction against the empirical results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1">#linear fit</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">Prod</span><span class="p">[</span><span class="n">normM_red</span><span class="o">&lt;</span><span class="n">roof</span><span class="p">])</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">Cos_bio</span><span class="p">[</span><span class="n">normM_red</span><span class="o">&lt;</span><span class="n">roof</span><span class="p">])</span>
+<span class="n">p_all</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">z</span><span class="o">*</span><span class="n">p_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">p_all</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">grass_col</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Prod</span><span class="p">[</span><span class="n">normM_red</span><span class="o">&lt;</span><span class="n">roof</span><span class="p">],</span><span class="n">Cos_bio</span><span class="p">[</span><span class="n">normM_red</span><span class="o">&lt;</span><span class="n">roof</span><span class="p">],</span><span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">grass_col</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Prediction ($\cos(\pi P_{i,bio})\cos(\pi P_{j,bio}))$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Reality ($\cos(\pi P_</span><span class="si">{ij}</span><span class="s1">)$)&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c2b37465bbde2c94b6ca5684825cd25e91944ac928364f2a0b6d7dfe1f292ca5.png" src="_images/c2b37465bbde2c94b6ca5684825cd25e91944ac928364f2a0b6d7dfe1f292ca5.png" />
+</div>
+</div>
+<p>This is really nice! Using the estimated broadness of functions (based on their mismatches with biomass), we can make some rough predictions for their collinearity. Similar to the validation test, the fact that this analysis produces points near the 1:1 line is very strong evidence that functions can be well represented by directions in state-space.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Two random narrow functions are likely to have very low collinearity, especially for species rich systems. However, if those two narrow functions are both performed by a similar set of species (as may be the case for the production of enzymes involved in the same nutrient cycle), then their collinearity would actually be much higher than predicted based on their broadnesses. This probably explains some of the points above the 1:1 line.</p>
+</div>
 <p>So far we’ve treated perturbations as tools to gain insights into species contributions to ecosystem functions. However, we can also use the mismatches between community properties in the observations of perturbations to gain useful information about the perturbations themselves.</p>
 </section>
 </section>
@@ -618,7 +701,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Validation tests</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Validation test</p>
       </div>
     </a>
     <a class="right-next"

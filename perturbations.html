@@ -168,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="data-preparation.html">1. Data preparation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="validation.html">2. Validation tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">2. Validation test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ecosystem-functions.html">3. Insights into functions</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Insights into perturbations</a></li>
 </ul>
@@ -381,6 +381,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="insights-into-perturbations">
 <h1><span class="section-number">4. </span>Insights into perturbations<a class="headerlink" href="#insights-into-perturbations" title="Permalink to this heading">#</a></h1>
 <p>In this final chapter of the tutorial we turn our attention to the perturbations in the grasslands dataset. The critical idea is that the proportion of mismatches between two community properties is equal to the collinearity of the community properties (i.e., the angle between their directions in state-space) <em><strong>only</strong></em> when perturbations have random effects. However, if perturbations don’t have random effects, we can use mismatch data to uncover interesting features of their species-level effects.</p>
+<p>There are two main insights into the population-level effects of perturbations that we can gain using our geometric approach:</p>
+<figure class="align-default" id="markdown-fig">
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/perturbations-expectations.png"><img alt="perturbations-expectations" class="bg-primary mb-1" src="_images/perturbations-expectations.png" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Mismatches between two functions can be used to estimate response diversity and mismatches between function and diversity can be used to estimate biomass scaling.</span><a class="headerlink" href="#markdown-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>As a reminder, the perturbations in the grassland dataset are: Warming (W), carbon dioxide enrichment (eCO2), decreased precipitation (PPT-), increased precipitation (PPT+), phosphorous addition (P), nitrogen addition (N), land-use change (LUC), W×eCO2, N×PPT+, N plus P plus potassium addition (N×P×K)). Land-use change can be subdivided into: land-use change types (NEtoAgr, conversion from native ecosystem to agriculture; NEtoPas, conversion from native ecosystem to pasture; NEtoPlant, conversion from native ecosystem to plantation; NEtoSec, conversion from native ecosystem to secondary ecosystem). Presumably a perturbation like warming will have a different sort of structure compared to a perturbation like land-use change?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -407,10 +414,10 @@ document.write(`
 <h2><span class="section-number">4.1. </span>Response diversity<a class="headerlink" href="#response-diversity" title="Permalink to this heading">#</a></h2>
 <p>We’ll first estimate the <em>response diversity</em> of perturbations by comparing perturbations based on the proportion of mismatches in the observations of the same two functions. Let’s take two broad functions, total biomass and respiration, whose responses are both reported for a high number of perturbations in the grasslands dataset.</p>
 <p>Compared to other pairs of functions, these two broad functions should have a realtively low proportion of mismatches across random perturbations. However, if perturbations have low response diversity (i.e., most species respond in the same direction), then perturbations will be bias in their directions in state-space towards the fully neagitve or fully positive areas of state-space (bottom left quadrant or top right quadrant of the figure below respectively). These two areas happen to completely avoid the cone of mismatches for functions that have positive directions.</p>
-<figure class="align-default" id="markdown-fig">
+<figure class="align-default" id="id1">
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/cone-mismatches.png"><img alt="mismatches" class="bg-primary mb-1" src="_images/cone-mismatches.png" style="width: 50%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">If a perturbation falls in one of the red cones there will be a mismatch in the observations of the two functions.</span><a class="headerlink" href="#markdown-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">If a perturbation falls in one of the red cones there will be a mismatch in the observations of the two functions.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition note">
@@ -487,6 +494,10 @@ document.write(`
 </div>
 <p>Five perturbation types had enough observations in the data set where the responses of both microbial biomass and microbial respiration were recorded to make reasonable estimates for response diversity. These were land-use change (conversion from native ecosystem to secondary ecosystem), nitrogen addition, carbon dioxide enrichment, nitrogen and phosphorus addition and warming.</p>
 <p>At opposite ends of the scale, land-use change had a very low response diversity while warming had a very high response diversity. This result are intuitive, given that warming often benefits some microbes but negatively impacts others, while land-use change would be expected to impact all species in the same way (presumably negatively as they will be replaced by microbes better suited to the new ecosystem type). You could think of warming often falling in the same direction as the red cone of mismatches in the figure above, but land-use change nearly always falling along the 1:1 line.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here we estimated the <strong>relative</strong> response diversity of these perturbations. Also, this approach assumes that the functions have positive directions (which is why we chose total biomass and respiration).</p>
+</div>
 </section>
 <section id="biomass-scaling">
 <h2><span class="section-number">4.2. </span>Biomass scaling<a class="headerlink" href="#biomass-scaling" title="Permalink to this heading">#</a></h2>
